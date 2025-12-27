@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>我的音乐作品集</title>
+  <!-- 原来是 /styles.css，现在直接写文件名 -->
+  <link rel="stylesheet" href="public_styles.css" />
+  <script src="public_scripts.js"></script>
+  <meta name="theme-color" content="#4CAF50" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+</head>
+<body class="light-theme">
+  <header>
+    <h1>🎵 我的音乐作品集</h1>
+    <button id="themeToggle">🌙</button>
+  </header>
+
+  <main>
+    <div id="adminPanel" style="display:none;">
+      <h2>管理后台</h2>
+      <input type="password" id="adminPass" placeholder="输入管理员密码" />
+      <button id="loginAdmin">登录</button>
+      <div id="uploadForm" style="display:none;">
+        <input type="text" id="songTitle" placeholder="歌曲标题" />
+        <input type="text" id="songArtist" placeholder="艺术家" />
+        <input type="file" id="audioFile" accept="audio/*" />
+        <input type="file" id="coverFile" accept="image/*" />
+        <button id="uploadBtn">上传歌曲</button>
+      </div>
+    </div>
+
+    <div id="songList"></div>
+    <div id="player" style="display:none;">
+      <audio id="audioPlayer" controls></audio>
+      <p id="nowPlaying"></p>
+    </div>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
