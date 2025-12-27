@@ -1,20 +1,20 @@
-// 把原来的 server/index.js 内容复制进来，并做两处修改：
 const express = require('express');
-const path = require('path');
-const fs = require('fs').promises;
-const cors = require('cors');
-const helmet = require('helmet');
-
-// ✅ 关键修改 1：路由从本地引入（我们把它放在 api_routes.js）
-const apiRoutes = require('./api_routes');
-
-const DATA_DIR = path.resolve(__dirname, 'data');
-const UPLOADS_DIR = path.resolve(__dirname, 'public_uploads'); // 注意：public/ 也要扁平化
-
-async function ensureDirs() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.mkdir(UPLOADS_DIR, { recursive: true });
-}
+2const path = require('path');
+3const fs = require('fs').promises;
+4const cors = require('cors');
+5const helmet = require('helmet');
+6
+7const apiRoutes = require('./api_routes');
+8
+9// ✅ Fly.io 适配：使用环境变量 PORT，并将数据存到 /data（Volume 挂载点）
+10const PORT = process.env.PORT || 8080;
+11const DATA_DIR = '/data/songs';        // JSON 数据
+12const UPLOADS_DIR = '/data/uploads';   // 上传的音频/图片
+13
+14async function ensureDirs() {
+15  await fs.mkdir(DATA_DIR, { recursive: true });
+16  await fs.mkdir(UPLOADS_DIR, { recursive: true });
+17}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
